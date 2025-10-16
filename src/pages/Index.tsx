@@ -12,29 +12,55 @@ export default function Index() {
       name: 'GingerBrave',
       rarity: 'Эпический',
       role: 'Атака',
-      description: 'Смелое печенье-герой',
-      color: '#EAB543'
+      description: 'Смелое печенье-герой, готовое на любые подвиги!',
+      color: '#EAB543',
+      image: 'https://cdn.poehali.dev/projects/6bd25604-a1fb-46b6-ae56-817b4436eb68/files/699fee43-7633-4742-9313-9535d07925b3.jpg',
+      stats: { attack: 92, defense: 68, hp: 850 }
     },
     {
       name: 'Strawberry Cookie',
       rarity: 'Редкий',
       role: 'Защита',
-      description: 'Сладкая защитница',
-      color: '#FF6B9D'
+      description: 'Сладкая защитница с сердцем из клубничного джема',
+      color: '#FF6B9D',
+      image: 'https://cdn.poehali.dev/projects/6bd25604-a1fb-46b6-ae56-817b4436eb68/files/249bdd12-d0f5-4328-be62-aaf94564a72e.jpg',
+      stats: { attack: 65, defense: 88, hp: 920 }
     },
     {
       name: 'Wizard Cookie',
       rarity: 'Легендарный',
       role: 'Магия',
-      description: 'Могучий маг',
-      color: '#8B4FFF'
+      description: 'Могучий маг владеющий древней магией печенек',
+      color: '#8B4FFF',
+      image: 'https://cdn.poehali.dev/projects/6bd25604-a1fb-46b6-ae56-817b4436eb68/files/e8275413-f09e-4aab-8a3d-1143f079bdf9.jpg',
+      stats: { attack: 95, defense: 55, hp: 780 }
     },
     {
       name: 'Dark Choco Cookie',
       rarity: 'Легендарный',
       role: 'Танк',
-      description: 'Темный рыцарь',
-      color: '#2C3E50'
+      description: 'Темный рыцарь с мечом из чистого шоколада',
+      color: '#2C3E50',
+      image: 'https://cdn.poehali.dev/projects/6bd25604-a1fb-46b6-ae56-817b4436eb68/files/619002c2-33fc-4c33-9efe-3d278d0e8227.jpg',
+      stats: { attack: 80, defense: 95, hp: 1100 }
+    },
+    {
+      name: 'Mint Choco Cookie',
+      rarity: 'Эпический',
+      role: 'Поддержка',
+      description: 'Элегантный музыкант исцеляющий союзников',
+      color: '#4ECDC4',
+      image: 'https://cdn.poehali.dev/projects/6bd25604-a1fb-46b6-ae56-817b4436eb68/files/8e6f932c-7949-47bf-a8a8-2f567daaa518.jpg',
+      stats: { attack: 60, defense: 70, hp: 800 }
+    },
+    {
+      name: 'Espresso Cookie',
+      rarity: 'Эпический',
+      role: 'Магия',
+      description: 'Кофейный маг с невероятной энергией',
+      color: '#8B4513',
+      image: 'https://cdn.poehali.dev/projects/6bd25604-a1fb-46b6-ae56-817b4436eb68/files/d45a884d-85f5-4a57-ba09-631bc7ada6cb.jpg',
+      stats: { attack: 88, defense: 62, hp: 820 }
     }
   ];
 
@@ -113,31 +139,73 @@ export default function Index() {
 
       <section className="py-16 bg-white">
         <div className="container mx-auto px-4">
-          <h3 className="text-4xl md:text-5xl font-black text-center mb-12 text-transparent bg-clip-text bg-gradient-to-r from-amber-600 to-pink-500">
+          <h3 className="text-4xl md:text-5xl font-black text-center mb-4 text-transparent bg-clip-text bg-gradient-to-r from-amber-600 to-pink-500">
             Популярные Персонажи
           </h3>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <p className="text-center text-gray-600 font-semibold mb-12 text-lg">Собери самую мощную команду печенек!</p>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {characters.map((char, idx) => (
               <Card 
                 key={idx} 
-                className="border-4 border-amber-300 hover:border-pink-400 transition-all duration-300 hover:scale-105 hover:shadow-2xl cursor-pointer overflow-hidden"
-                style={{ backgroundColor: `${char.color}15` }}
+                className="border-4 border-amber-300 hover:border-pink-400 transition-all duration-300 hover:scale-105 hover:shadow-2xl cursor-pointer overflow-hidden group"
+                style={{ backgroundColor: `${char.color}10` }}
               >
+                <div className="relative h-48 overflow-hidden bg-gradient-to-br from-purple-100 to-pink-100">
+                  <img 
+                    src={char.image} 
+                    alt={char.name}
+                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
+                  />
+                  <Badge className="absolute top-3 right-3 bg-gradient-to-r from-amber-400 to-orange-500 text-white font-bold border-2 border-white px-3 py-1">
+                    {char.rarity}
+                  </Badge>
+                </div>
                 <CardHeader>
-                  <div className="flex items-center justify-between mb-3">
-                    <Badge className="bg-gradient-to-r from-amber-400 to-orange-500 text-white font-bold border-2 border-white">
-                      {char.rarity}
-                    </Badge>
-                    <Icon name="Cookie" size={32} style={{ color: char.color }} />
-                  </div>
-                  <CardTitle className="text-2xl font-black">{char.name}</CardTitle>
+                  <CardTitle className="text-2xl font-black flex items-center justify-between">
+                    {char.name}
+                    <Icon name="Star" size={24} style={{ color: char.color }} className="fill-current" />
+                  </CardTitle>
                   <CardDescription className="text-lg font-bold" style={{ color: char.color }}>
                     {char.role}
                   </CardDescription>
                 </CardHeader>
                 <CardContent>
-                  <p className="text-gray-700 font-semibold">{char.description}</p>
-                  <Button className="w-full mt-4 font-bold" style={{ backgroundColor: char.color }}>
+                  <p className="text-gray-700 font-semibold mb-4 text-sm">{char.description}</p>
+                  
+                  <div className="space-y-2 mb-4">
+                    <div className="flex items-center justify-between text-sm">
+                      <span className="font-bold text-gray-600">⚔️ Атака:</span>
+                      <div className="flex items-center gap-2">
+                        <div className="w-24 h-2 bg-gray-200 rounded-full overflow-hidden">
+                          <div 
+                            className="h-full bg-gradient-to-r from-red-400 to-red-600 rounded-full"
+                            style={{ width: `${char.stats.attack}%` }}
+                          />
+                        </div>
+                        <span className="font-black" style={{ color: char.color }}>{char.stats.attack}</span>
+                      </div>
+                    </div>
+                    
+                    <div className="flex items-center justify-between text-sm">
+                      <span className="font-bold text-gray-600">🛡️ Защита:</span>
+                      <div className="flex items-center gap-2">
+                        <div className="w-24 h-2 bg-gray-200 rounded-full overflow-hidden">
+                          <div 
+                            className="h-full bg-gradient-to-r from-blue-400 to-blue-600 rounded-full"
+                            style={{ width: `${char.stats.defense}%` }}
+                          />
+                        </div>
+                        <span className="font-black" style={{ color: char.color }}>{char.stats.defense}</span>
+                      </div>
+                    </div>
+                    
+                    <div className="flex items-center justify-between text-sm">
+                      <span className="font-bold text-gray-600">❤️ HP:</span>
+                      <span className="font-black" style={{ color: char.color }}>{char.stats.hp}</span>
+                    </div>
+                  </div>
+                  
+                  <Button className="w-full mt-2 font-bold text-white" style={{ backgroundColor: char.color }}>
                     Подробнее
                   </Button>
                 </CardContent>
