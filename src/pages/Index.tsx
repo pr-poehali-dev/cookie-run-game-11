@@ -77,6 +77,17 @@ export default function Index() {
     { date: '5 Окт', title: 'Новые персонажи', tag: 'Новинка' }
   ];
 
+  const leaderboard = [
+    { rank: 1, name: 'CookieMaster2024', trophies: 12450, kingdom: 'Сахарный Замок', avatar: '👑' },
+    { rank: 2, name: 'SweetVictory', trophies: 11890, kingdom: 'Шоколадная Башня', avatar: '🏆' },
+    { rank: 3, name: 'GingerLegend', trophies: 11230, kingdom: 'Карамельный Рай', avatar: '⭐' },
+    { rank: 4, name: 'BakeryKing', trophies: 10850, kingdom: 'Печенье Империя', avatar: '🎖️' },
+    { rank: 5, name: 'CandyCrusher', trophies: 10420, kingdom: 'Конфетный Край', avatar: '💎' },
+    { rank: 6, name: 'DarkChocoFan', trophies: 9980, kingdom: 'Темное Королевство', avatar: '🌟' },
+    { rank: 7, name: 'StrawberryQueen', trophies: 9650, kingdom: 'Ягодная Долина', avatar: '🍓' },
+    { rank: 8, name: 'WizardPro', trophies: 9320, kingdom: 'Магическая Цитадель', avatar: '🔮' }
+  ];
+
   return (
     <div className="min-h-screen bg-gradient-to-b from-purple-100 via-pink-50 to-orange-50">
       <nav className="sticky top-0 z-50 backdrop-blur-md bg-white/80 border-b-4 border-amber-400 shadow-lg">
@@ -260,6 +271,82 @@ export default function Index() {
             </div>
             <div className="text-center">
               <div className="text-9xl animate-bounce">📱</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="py-16 bg-gradient-to-br from-indigo-600 via-purple-600 to-pink-600 text-white">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-12">
+            <div className="inline-block text-6xl mb-4 animate-pulse">🏆</div>
+            <h3 className="text-4xl md:text-5xl font-black mb-4">
+              PvP Рейтинг Игроков
+            </h3>
+            <p className="text-xl font-semibold text-white/90">Топ-8 лучших королевств мира!</p>
+          </div>
+
+          <div className="max-w-4xl mx-auto">
+            <Card className="border-4 border-amber-400 bg-white/95 backdrop-blur overflow-hidden">
+              <CardContent className="p-0">
+                <div className="overflow-x-auto">
+                  <table className="w-full">
+                    <thead>
+                      <tr className="bg-gradient-to-r from-amber-400 to-orange-500 text-white">
+                        <th className="py-4 px-4 text-left font-black text-lg">Место</th>
+                        <th className="py-4 px-4 text-left font-black text-lg">Игрок</th>
+                        <th className="py-4 px-4 text-left font-black text-lg hidden md:table-cell">Королевство</th>
+                        <th className="py-4 px-4 text-right font-black text-lg">Трофеи</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {leaderboard.map((player, idx) => (
+                        <tr 
+                          key={idx}
+                          className={`border-b-2 border-gray-200 hover:bg-gradient-to-r hover:from-purple-50 hover:to-pink-50 transition-colors cursor-pointer ${
+                            player.rank <= 3 ? 'bg-gradient-to-r from-amber-50 to-orange-50' : ''
+                          }`}
+                        >
+                          <td className="py-4 px-4">
+                            <div className="flex items-center gap-2">
+                              <span className="text-3xl">{player.avatar}</span>
+                              <span className={`text-2xl font-black ${
+                                player.rank === 1 ? 'text-amber-500' :
+                                player.rank === 2 ? 'text-gray-400' :
+                                player.rank === 3 ? 'text-orange-600' :
+                                'text-gray-600'
+                              }`}>
+                                #{player.rank}
+                              </span>
+                            </div>
+                          </td>
+                          <td className="py-4 px-4">
+                            <div className="font-black text-lg text-gray-800">{player.name}</div>
+                          </td>
+                          <td className="py-4 px-4 hidden md:table-cell">
+                            <div className="font-semibold text-gray-600">{player.kingdom}</div>
+                          </td>
+                          <td className="py-4 px-4 text-right">
+                            <div className="flex items-center justify-end gap-2">
+                              <span className="text-2xl font-black text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-pink-600">
+                                {player.trophies.toLocaleString()}
+                              </span>
+                              <Icon name="Trophy" size={20} className="text-amber-500 fill-current" />
+                            </div>
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              </CardContent>
+            </Card>
+
+            <div className="mt-8 text-center">
+              <Button size="lg" className="bg-gradient-to-r from-amber-400 to-orange-500 hover:from-amber-500 hover:to-orange-600 text-white font-black text-lg px-8 py-6 rounded-full shadow-2xl hover:scale-110 transition-transform border-4 border-white">
+                <Icon name="Swords" size={24} className="mr-2" />
+                Войти в Рейтинг
+              </Button>
             </div>
           </div>
         </div>
